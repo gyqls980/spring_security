@@ -44,4 +44,9 @@ public class UserController {
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
     }
+
+    @PostMapping("/user/resource")
+    public String rsc(){
+        return "user/a";
+    }
 }
