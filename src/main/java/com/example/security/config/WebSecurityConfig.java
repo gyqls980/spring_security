@@ -12,13 +12,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * JwtAuthenticationFilter 등록 + 필요한 기능 구현
+ * Jwt Authentication(인증) Filter 등록 + 필요한 기능 구현
  *
  */
 
 
 // Spring Security를 사용하기 위해서는 Spring Security Filter Chain 을 사용해야 함
 // -> WebSecurityConfigurerAdapter를 상속받은 클래스에 @EnableWebSecurity 사용
+
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

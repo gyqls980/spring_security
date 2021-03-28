@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +29,8 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-    private String secretKey = "webfirewood";
+    @Value("${security.secretKey}")
+    private String secretKey;
 
     // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
@@ -36,12 +38,14 @@ public class JwtTokenProvider {
     private final UserDetailsService userDetailsService;
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
-    @PostConstruct
+    @PostConstruct // 의존성 주입이 이루어진 후 초기화를 수행
+    // @PostConstruct가 붙은 메서드는 클래스가 service()를 수행하기 전에 발생, bean 생성될 때 딱 1번만 초기화
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
     // JWT 토큰 생성
+    // jwt의 내용(payload)에 있는 속성들을 claim(set)이라고 하며, 생성 일시 등의 정보가 저장.
     public String createToken(String userPk, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장된다.
