@@ -17,10 +17,6 @@ public class CustomUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    /**
-     * SpringSecurity는 UserDetails 객체를 통해 권한 정보를 관리하기 때문에
-     * User 클래스에 UserDetails 를 구현하고 추가 정보를 재정의
-     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username)
