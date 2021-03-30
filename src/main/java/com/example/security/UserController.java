@@ -45,7 +45,7 @@ public class UserController {
         return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
     }
 
-    // /user/resource 접근 위한 입시 메서드
+    // /user/resource 접근 위한 임시 메서드
     @PostMapping("/user/resource")
     public String rsc(){
         return "user/a";
