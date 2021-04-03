@@ -1,7 +1,7 @@
 # spring_security
-스프링 시큐리티 실습
+### 스프링 시큐리티 실습
 
-:file_folder: JWT 활용 Spring Security 
+#### :file_folder: JWT 활용 Spring Security 
 
 :pushpin: 회원가입
 
